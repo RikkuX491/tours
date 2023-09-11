@@ -4,11 +4,15 @@ def sum_odds(l: list[int]) -> int:
     [1,2,3,4,5] -->
     9
     """
-    pass
-
+    # Answer:
+    sum = 0
+    for num in l:
+        if(num % 2 == 1):
+            sum = sum + num
+    return sum
 
 print("sum_odds")
-# print(sum_odds([1,2,3,4,5]))
+print(sum_odds([1,2,3,4,5]))
 
 
 def list_of_squares(n: int) -> list[int]:
@@ -17,24 +21,29 @@ def list_of_squares(n: int) -> list[int]:
     n = 5 -->
     [1,4,9,16,25]
     """
-    pass
+    # Answer:
+    return [num * num for num in range(1, n + 1)]
 
 
 print("list_of_squares")
-# print(list_of_squares(5))
+print(list_of_squares(5))
 
 
-def count_letter(string: str, letter: str) -> int:
+def count_letters(string: str, letter: str) -> int:
     """
        Returns the number of times the given letter occurs in
        the string
     """
     assert len(letter) == 1, "letter parameter should be a string of length 1"
-    pass
 
+    letter_occurrences = 0
+    for l in string:
+        if(l == letter):
+            letter_occurrences += 1
+    return letter_occurrences
 
 print("count_letters")
-# print(count_letters('Computers are good at following instructions, but not at reading your mind.', 'o'))
+print(count_letters('Computers are good at following instructions, but not at reading your mind.', 'o'))
 
 
 def swap_min_max(l: list[int]) -> list[int]:
@@ -44,11 +53,15 @@ def swap_min_max(l: list[int]) -> list[int]:
     [1,2,3,4] -->
     [4,2,3,1]
     """
-    pass
+    temp = l[0]
+    l[0] = l[-1]
+    l[-1] = temp
+
+    return l
 
 
 print("swap_min_max")
-# print(swap_min_max([5,2,7,8,4,9]))
+print(swap_min_max([5,2,7,8,4,9]))
 
 authors: list[dict] = [
     {"id": 2, "name": "author 2"},
@@ -68,11 +81,13 @@ def get_author_by_id(id: int) -> dict:
     """
     Returns the author dictionary that contains the id parameter
     """
-    pass
+    for a in authors:
+        if(a['id'] == id):
+            return a
 
 
 print("get_author_by_id")
-# print(get_author_by_id(2))
+print(get_author_by_id(2))
 
 
 def get_authors_that_posted_in_year(year: int) -> list[dict]:
@@ -81,8 +96,15 @@ def get_authors_that_posted_in_year(year: int) -> list[dict]:
     (hint: you'll need to traverse the posts list first, then
     traverse the authors list)
     """
-    pass
+    authors_that_posted_in_year = []
+    for p in posts:
+        if p['year'] == year:
+            for a in authors:
+                if a['id'] == p['author_id']:
+                    if not a in authors_that_posted_in_year:
+                        authors_that_posted_in_year.append(a)
+    return authors_that_posted_in_year
 
 
 print("get_authors_that_posted_in_year")
-# print(get_authors_that_posted_in_year(2015))
+print(get_authors_that_posted_in_year(2015))
